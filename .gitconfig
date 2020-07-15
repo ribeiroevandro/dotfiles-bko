@@ -4,12 +4,16 @@
 
 [alias]
     pom = push origin master -u
+    pod = push origin develop
+    pld = pull origin develop
     phm = push heroku master
     ps = push
+    pl = pull
     ci = commit
     cl = clone
     co = checkout
     cm = checkout master
+    cd = checkout develop
     cb = checkout -b
     st = status -sb
     sf = show --name-only
