@@ -1,13 +1,12 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-# source $HOME/www/opensource/secrets/*
+source $HOME/www/opensource/secrets/.secrets
 
 source $HOME/www/opensource/dotfiles/config/functions/devspace.sh
 source $HOME/www/opensource/dotfiles/config/functions/heppier.sh
 source $HOME/www/opensource/dotfiles/config/functions/init_project.sh
 
 
-#/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home
 export ANDROID_HOME=~/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
