@@ -1,23 +1,36 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-source $HOME/www/opensource/secrets/.secrets
+source $HOME/www/opensource/secrets/.expoalias
 
 source $HOME/www/opensource/dotfiles/config/functions/devspace.sh
 source $HOME/www/opensource/dotfiles/config/functions/heppier.sh
 source $HOME/www/opensource/dotfiles/config/functions/init_project.sh
+source $HOME/www/opensource/dotfiles/config/functions/git_alias.sh
+source $HOME/www/opensource/dotfiles/config/functions/create.sh
+source $HOME/www/opensource/dotfiles/config/functions/install_bare.sh
+source $HOME/www/opensource/dotfiles/config/functions/newBranch.sh
 
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_261.jdk/Contents/Home
 export ANDROID_HOME=~/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+#Brew
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+# Flutter
+export FLUTTER_HOME=~/flutter
+export PATH=$PATH:$FLUTTER_HOME/bin
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/$(whoami)/.oh-my-zsh"
 export PATH="$PATH:/usr/local/bin"
 export PATH=$PATH:~/.composer/vendor/bin
+alias composer="php /usr/local/bin/composer.phar"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -26,7 +39,7 @@ export PATH=$PATH:~/.composer/vendor/bin
 ZSH_THEME="spaceship"
 
 plugins=(
-  git
+  lol
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -34,15 +47,19 @@ source $ZSH/oh-my-zsh.sh
 # User configurations
 
 # Emulators
-alias nexus="emulator @Nexus"
-alias nexus5Play="emulator @Nexus_5_Play"
 alias pixel="emulator @Pixel"
+alias pixelS="emulator @PixelS"
+alias pixelSS="emulator @PixelSS"
+alias Nexus="emulator @Nexus"
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
+#Screen Shot 2020-08-13 at 17.27.01
+#Simulator Screen Shot - iPhone 8 - 2020-08-13 at 17.27.05
 # Clean Desktop
-alias cleandesk="rm ~/Desktop/Screen*.png && rm ~/Desktop/Simulator*.png"
+alias cleandesk="rm ~/Desktop/*Shot*.png"
+alias clean_nm="cd ~/www/work && rm -rf ./**/node_modules"
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
@@ -52,13 +69,6 @@ alias zedit="vim ~/dotfiles/config/.zshrc"
 
 # Edit .vimrc
 alias vedit="vim ~/dotfiles/config/.vimrc"
-
-# Expo Accounts
-# alias expersonal="expo logout && expo login -u 'username' -p 'password'"
-alias expersonal="expo logout && expo login -u 'ribeiroevandro' -p 'lb5nYd20&i#nTGe9zh@SoEzjGy8fp#nj'"
-alias extodavida="expo logout && expo login -u 'admin@todavida.com.br' -p 'Todavida123'"
-alias exassissat="expo logout && expo login -u 'elisoncrestani@gmail.com' -p 'ElisonMKT'"
-
 
 function iexpo() {
   expo init $1 && cd $1 && code $1
@@ -86,9 +96,9 @@ function gao() {
 }
 
 # Yarn add dependencies in TypeScript Projects
- function yts() {
+function yts() {
   yarn add $1 && yarn add @types/$1 -D
- }
+}
 
 function mdd() {
   md $1 && cd $1
@@ -111,9 +121,8 @@ newapi () {
   adonis new $1 --api-only --yarn
 }
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # eval "$(rbenv init -)"
 # rbenv settings
@@ -170,3 +179,5 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-completions
 zinit light buonomo/yarn-completion
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

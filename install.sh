@@ -2,7 +2,7 @@
 
 source colors.sh
 
-DOTFILES="$HOME/Development/dotfiles"
+DOTFILES="$HOME/www/opensource/dotfiles"
 
 if [[ -d $DOTFILES ]]; then
     print 'Checking dotfiles directory'
@@ -12,8 +12,8 @@ fi
 
 cd $DOTFILES
 
-source install/environment.sh
+#source install/environment.sh
 
 source install/softwares.sh
 
-source config/global.sh
+#source config/global.sh

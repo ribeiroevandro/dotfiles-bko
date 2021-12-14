@@ -3,16 +3,16 @@
     email = ribeiroevandro@live.com
 
 [alias]
-    pom = push origin master -u
+    pom = push origin main -u
     pod = push origin develop
     pld = pull origin develop
-    phm = push heroku master
+    phm = push heroku main
     ps = push
     pl = pull
     ci = commit
     cl = clone
     co = checkout
-    cm = checkout master
+    cm = checkout main
     cd = checkout develop
     cb = checkout -b
     st = status -sb
@@ -23,6 +23,7 @@
     unstage = reset HEAD --
     undo = checkout --
     rollback = reset --soft HEAD~1
+	new = !git init && git symbolic-ref HEAD refs/heads/main
 
 [apply]
     # Detect whitespace errors when applying a patch
@@ -41,6 +42,7 @@
     # Make `git rebase` safer on OS X
     # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
     trustctime = false
+	ignorecase = false
 
 [color]
     # Use colors in Git commands that are capable of colored output when
@@ -81,8 +83,6 @@
     # `git config --global push.default simple`. See http://git.io/mMah-w.
     default = matching
 
-# URL shorthands
-
 [url "git@github.com:"]
     insteadOf = "gh:"
     pushInsteadOf = "github:"
@@ -98,3 +98,7 @@
 
 [url "git://gist.github.com/"]
     insteadOf = "gist:"
+
+
+[init]
+	templateDir = ~/www/opensource/dotfiles/config/git/template/

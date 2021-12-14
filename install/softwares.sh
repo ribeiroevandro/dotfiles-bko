@@ -6,28 +6,27 @@ source colors.sh
 msg_install "Installing apps with brew cask"
 
 cask=(
-  "google-chrome"
-  "firefox"
+  "microsoft-edge"
+  "brave-browser"
   "iterm2"
   "visual-studio-code"
-  "psequel"
+  "android-studio"
   "transmission"
-  "stremio"
-  "spotify"
   "coconutbattery"
   "zoomus"
   "docker"
   "mysqlworkbench"
-  "reactotron"
+  "postico"
   "insomnia"
-  "lastpass"
   "teamviewer"
   "telegram-desktop"
   "ferdi"
+  "adobe-creative-cloud"
+  "figma"
 )
 
 for app in "${cask[@]}"; do
   msg_install "Installing $app"
-  brew cask install $app
+  brew cask install $app 2> /dev/null
   msg_ok "$app"
 done
